@@ -27,14 +27,16 @@ docker run --name db-challenge-code -e POSTGRES_PASSWORD=randompassword -e POSTG
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`API_END_POINT=https://www.alphavantage.co/query`
-`PORT=3000`
-`DB_HOST=localhost`
-`DB_NAME=dbchallengecode`
-`DB_USER=tonyphat`
-`DB_PASSWORD=randompassword`
-`DB_PORT=5432`
-`DB_TYPE=postgresql`
+```ruby
+API_END_POINT=`https://www.alphavantage.co/query`
+PORT=3000
+DB_HOST=`localhost`
+DB_NAME=`dbchallengecode`
+DB_USER=`tonyphat`
+DB_PASSWORD=`randompassword`
+DB_PORT=5432
+DB_TYPE=`postgresql`
+```
 
 ## Run Locally
 

@@ -1,10 +1,16 @@
+// Libs importing
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { GraphQLError } from 'graphql';
 
+// Entities importing
+import { PortfolioEntity } from 'src/entities';
+
+// Services importing
+import { PortfolioService } from './portfolio.service';
+
+// Input types importing
 import { CreatePortfolioInput } from './dto/create-portfolio.input';
 import { UpdatePortfolioInput } from './dto/update-portfolio.input';
-import { PortfolioEntity } from 'src/entities';
-import { PortfolioService } from './portfolio.service';
 
 @Resolver()
 export class PortfolioResolver {

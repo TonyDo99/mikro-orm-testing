@@ -1,36 +1,17 @@
+// Libs importing
 import { Module } from '@nestjs/common';
+
+// Modules importing
 import { HistoricalMarketModule } from './historical-market/historical-market.module';
-import { ConfigModule } from '@nestjs/config';
-import { join } from 'path';
-import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { PortfolioModule } from './portfolio/portfolio.module';
 import { OrmModule } from './modules/orm.module';
-import { GraphQLFormattedError } from 'graphql';
-import { validationConfig } from './common/validation';
+import { GraphqlModule } from './modules/graphql.module';
+import { ConfigsModule } from './modules/config.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      envFilePath: join(process.cwd(), '.env'),
-      validationSchema: validationConfig,
-    }),
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-      sortSchema: true,
-      playground: false,
-      plugins: [ApolloServerPluginLandingPageLocalDefault()],
-      useGlobalPrefix: true,
-      formatError: (error: any) => {
-        const graphQLFormattedError: GraphQLFormattedError = {
-          message:
-            error.extensions?.exception?.response?.message || error.message,
-        };
-        return graphQLFormattedError;
-      },
-    }),
+    ConfigsModule,
+    GraphqlModule,
     OrmModule,
     HistoricalMarketModule,
     PortfolioModule,

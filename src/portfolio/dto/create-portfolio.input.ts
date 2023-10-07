@@ -1,5 +1,8 @@
+// Libs importing
 import { InputType, Field } from '@nestjs/graphql';
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+
+// Entities importing
 import { PortfolioEntity } from 'src/entities/user.entity';
 
 @InputType()

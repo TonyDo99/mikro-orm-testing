@@ -1,10 +1,15 @@
+// Libs importing
 import { ArgsType, Field, GraphQLISODateTime } from '@nestjs/graphql';
 import { IsEnum, IsOptional, IsString, Max } from 'class-validator';
+
+// Types importing
 import { SORT_TYPES, TOPICS } from '../types/historical-market.type';
+
+// Commons importing
 import { ERRORS_RESPONSE } from 'src/common/errors';
 
 @ArgsType()
-export class HistoricalMarketBodyInput {
+export class HistoricalMarketBodyArgs {
   // TODO: Check convention sending field, Example: tickers=COIN,CRYPTO:BTC,FOREX:USD
   @Field(() => String, {
     nullable: true,

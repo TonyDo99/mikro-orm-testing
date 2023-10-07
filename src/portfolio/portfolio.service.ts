@@ -1,9 +1,14 @@
+// Modules importing
 import { Injectable } from '@nestjs/common';
-import { CreatePortfolioInput } from './dto/create-portfolio.input';
-import { UpdatePortfolioInput } from './dto/update-portfolio.input';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityRepository } from '@mikro-orm/postgresql';
+
+// Entities importing
 import { PortfolioEntity } from 'src/entities';
+
+// Input types importing
+import { CreatePortfolioInput } from './dto/create-portfolio.input';
+import { UpdatePortfolioInput } from './dto/update-portfolio.input';
 
 @Injectable()
 export class PortfolioService {

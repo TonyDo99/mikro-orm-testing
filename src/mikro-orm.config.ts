@@ -1,7 +1,10 @@
+// Libs importing
 import { Logger } from '@nestjs/common';
-import { PortfolioEntity } from './entities';
 import { ConfigService } from '@nestjs/config';
 import { defineConfig } from '@mikro-orm/core';
+
+// Entities importing
+import { PortfolioEntity } from './entities';
 
 const logger = new Logger('MikroORM');
 

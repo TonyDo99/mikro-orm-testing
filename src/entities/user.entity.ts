@@ -1,7 +1,9 @@
+// Libs importing
 import { Entity, Index, Property } from '@mikro-orm/core';
-import { BaseEntity } from './base.entity';
 import { Field, ObjectType } from '@nestjs/graphql';
 
+// Entities importing
+import { BaseEntity } from './base.entity';
 @Entity()
 @ObjectType()
 export class PortfolioEntity extends BaseEntity {

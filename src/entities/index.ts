@@ -1,3 +1,4 @@
+// Entities importing
 import { PortfolioEntity } from './user.entity';
 
 const entities = [PortfolioEntity];

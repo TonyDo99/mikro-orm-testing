@@ -1,9 +1,12 @@
+// Libs importing
 import { ArgsType, Field } from '@nestjs/graphql';
 import { IsNotEmpty, IsString } from 'class-validator';
-import { HistoricalMarketBodyInput } from './historical-market-extend.args';
+
+// Arguments importing
+import { HistoricalMarketBodyArgs } from './historical-market-extend.args';
 
 @ArgsType()
-export class HistoricalMarketInputs extends HistoricalMarketBodyInput {
+export class HistoricalMarketArgs extends HistoricalMarketBodyArgs {
   @Field(() => String, {
     defaultValue: 'NEWS_SENTIMENT',
   })

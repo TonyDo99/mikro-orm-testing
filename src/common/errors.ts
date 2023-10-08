@@ -1,4 +1,22 @@
-export const ERRORS_RESPONSE = {
-  OUT_LIMIT_STRING:
-    'You are looking for an even higher output limit, please contact support@alphavantage.co to have your limit boosted.',
+import { ValidationError } from '@nestjs/common';
+
+export interface IMessageError {
+  [key: string]: string[];
+}
+
+export const formatErrors = (errors: ValidationError[]): IMessageError[] => {
+  return errors.reduce((prevValue: IMessageError[], value) => {
+    if (value.constraints) {
+      const values: string[] = [];
+      for (const key in value.constraints) {
+        values.push(value.constraints[key]);
+      }
+
+      prevValue.push({
+        [`${value.property}`]: values,
+      });
+    }
+
+    return prevValue;
+  }, []);
 };

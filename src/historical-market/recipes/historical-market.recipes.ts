@@ -2,121 +2,80 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-class FeedTopic {
+export class Metadata {
   @Field(() => String, {
     nullable: true,
   })
-  topic: string;
+  information: string;
 
   @Field(() => String, {
     nullable: true,
   })
-  relevance_score: string;
+  symbol: string;
+
+  @Field(() => String, {
+    nullable: true,
+  })
+  lastRefreshed: string;
+
+  @Field(() => String, {
+    nullable: true,
+  })
+  interval: string;
+
+  @Field(() => String, {
+    nullable: true,
+  })
+  outputSize: string;
+
+  @Field(() => String, {
+    nullable: true,
+  })
+  timeZone: string;
 }
 
 @ObjectType()
-class FeedTickerSentiment {
+export class TimeSeriesData {
   @Field(() => String, {
     nullable: true,
   })
-  ticker: string;
-
-  @Field(() => String, {
-    nullable: true,
-  })
-  relevance_score: string;
+  timeStamp: string;
 
   @Field(() => String, {
     nullable: true,
   })
-  ticker_sentiment_score: string;
+  open: string;
 
   @Field(() => String, {
     nullable: true,
   })
-  ticker_sentiment_label: string;
-}
-
-@ObjectType()
-class MarketFeed {
-  @Field(() => String, {
-    nullable: true,
-  })
-  title: string;
+  high: string;
 
   @Field(() => String, {
     nullable: true,
   })
-  url: string;
-
-  //   TODO: Config scalar date time format YYYYMMDDTHHMM
-  @Field(() => String, {
-    nullable: true,
-  })
-  time_published: string;
-
-  @Field(() => [String])
-  authors: string[];
-
-  @Field(() => [String], {
-    nullable: true,
-  })
-  summary: string[];
+  low: string;
 
   @Field(() => String, {
     nullable: true,
   })
-  banner_image: string;
+  close: string;
 
   @Field(() => String, {
     nullable: true,
   })
-  source: string;
-
-  @Field(() => String, {
-    nullable: true,
-  })
-  category_within_source: string;
-
-  @Field(() => String, {
-    nullable: true,
-  })
-  source_domain: string;
-
-  @Field(() => [FeedTopic])
-  topics: FeedTopic[];
-
-  @Field(() => Number)
-  overall_sentiment_score: number;
-
-  @Field(() => String, {
-    nullable: true,
-  })
-  overall_sentiment_label: string;
-
-  @Field(() => [FeedTickerSentiment])
-  ticker_sentiment: FeedTickerSentiment[];
+  volume: string;
 }
 
 @ObjectType()
 export class HistoricalMarketRecipes {
-  @Field(() => String, {
+  @Field(() => Metadata, {
     nullable: true,
   })
-  items: string;
+  metaData: Metadata;
 
-  @Field(() => String, {
+  @Field(() => [TimeSeriesData], {
     nullable: true,
   })
-  sentiment_score_definition: string;
-
-  @Field(() => String, {
-    nullable: true,
-  })
-  relevance_score_definition: string;
-
-  @Field(() => [MarketFeed], {
-    nullable: true,
-  })
-  feed: MarketFeed[];
+  timeSeries?: TimeSeriesData[];
 }

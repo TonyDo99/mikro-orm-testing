@@ -1,58 +1,47 @@
 // Libs importing
 import { ArgsType, Field, GraphQLISODateTime } from '@nestjs/graphql';
-import { IsEnum, IsOptional, IsString, Max } from 'class-validator';
+import { IsBoolean, IsEnum, IsISO8601, IsOptional } from 'class-validator';
 
 // Types importing
-import { SORT_TYPES, TOPICS } from '../types/historical-market.type';
-
-// Commons importing
-import { ERRORS_RESPONSE } from 'src/common/errors';
+import { DATA_TYPE, OUT_PUT_SIZE } from '../types/historical-market.type';
 
 @ArgsType()
 export class HistoricalMarketBodyArgs {
-  // TODO: Check convention sending field, Example: tickers=COIN,CRYPTO:BTC,FOREX:USD
   @Field(() => String, {
     nullable: true,
   })
   @IsOptional()
-  @IsString()
-  tickers?: string;
+  @IsBoolean()
+  adjusted?: boolean;
 
-  @Field(() => String, {
+  @Field(() => Boolean, {
     nullable: true,
+    defaultValue: true,
   })
   @IsOptional()
-  @IsEnum(TOPICS)
-  topics?: string;
+  @IsBoolean()
+  extended_hours?: boolean;
 
   @Field(() => GraphQLISODateTime, {
     nullable: true,
   })
   @IsOptional()
-  @IsString()
-  time_from?: typeof GraphQLISODateTime;
-
-  @Field(() => GraphQLISODateTime, {
-    nullable: true,
-  })
-  @IsOptional()
-  @IsString()
-  time_to?: typeof GraphQLISODateTime;
+  @IsISO8601()
+  month?: Date;
 
   @Field(() => String, {
     nullable: true,
+    defaultValue: OUT_PUT_SIZE.COMPACT,
   })
   @IsOptional()
-  @IsEnum(SORT_TYPES)
-  sort?: string;
+  @IsEnum(OUT_PUT_SIZE)
+  outputsize?: OUT_PUT_SIZE;
 
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
-    defaultValue: 50,
+    defaultValue: DATA_TYPE.JSON,
   })
   @IsOptional()
-  @Max(1000, {
-    message: ERRORS_RESPONSE.OUT_LIMIT_STRING,
-  })
-  limit?: number;
+  @IsEnum(DATA_TYPE)
+  datatype?: DATA_TYPE;
 }
